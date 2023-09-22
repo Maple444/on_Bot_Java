@@ -1,6 +1,8 @@
 ## Atom Robotics Java Methods Repository
 
-This repository is going to be used for storing and editing the methods we create as learn Java. This can also be used for other folders related to programming as well. Many of the functions here were tested within FTC SIM in order to simulate the playing field.
+This repository is going to be used for storing and editing the methods (same thing as a function) we create as learn Java. This can also be used for other folders related to programming as well. Many of the functions here were tested within FTC SIM in order to simulate the playing field. 
+
+Check src > on_bot.java to see the methods that will be used on the robot. 
 
 ## Folder Structure (for editors)
 
