@@ -2,7 +2,12 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         
-        // Everything here is from our practice in FTC SIM
+
+        /* Everything here is from our practice in FTC SIM *courses*. These are not our current functions 
+         The purpose of this file is for us to have something to go back to and identify root problems in code 
+         or restart from scratch in creating a certain method */
+
+
         // Method where everything runs in FTC SIM. Included. We don't fully understand how this works yet.
         public class MyFIRSTJavaOpMode extends LinearOpMode {
             DcMotor motorLeft;
@@ -24,6 +29,28 @@ public class App {
                   frontRight.setPower(1);
               }
                 
+              public void turnLeft(int turnTime) {
+                  backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+                  backRightDrive.setDirection(DcMotor.Direction.REVERSE);
+                  frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+                  frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
+                
+                  frontLeftDrive.setPower(0.5);
+                  backLeftDrive.setPower(0.5);
+                  frontRightDrive.setPower(-0.5);
+                  backRightDrive.setPower(-0.5);
+                
+                  /* The time needed to turn 90 degrees in FTC SIM is 940.
+                   * miliseconds. This is what is the normal value for the 
+                   * turnTime parameter. */
+                  sleep(turnTime);
+                          
+                  frontLeftDrive.setPower(0);
+                  backLeftDrive.setPower(0);
+                  frontRightDrive.setPower(0);
+                  backRightDrive.setPower(0);
+              }
+
               public void turnRight() {
                   frontLeft.setDirection(DcMotor.Direction.REVERSE);
                   motorLeft.setDirection(DcMotor.Direction.REVERSE);
