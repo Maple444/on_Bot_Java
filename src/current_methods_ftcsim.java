@@ -10,12 +10,15 @@ public class App {
 
         // Method where everything runs in FTC SIM. Included. We don't fully understand how this works yet.
         public class MyFIRSTJavaOpMode extends LinearOpMode {
-            DcMotor motorLeft;
-            DcMotor motorRight;
-            DcMotor frontLeft;
-            DcMotor frontRight;
-            ColorSensor color1;
-            DistanceSensor distance1;
+            CRServo leftWheel;
+            CRServo rightWheel;
+            DcMotor backLeftDrive;
+            DcMotor backRightDrive;
+            DcMotor frontLeftDrive;
+            DcMotor frontRightDrive;
+            DcMotor wrist;
+            DcMotor leftShoulder;
+            DcMotor rightShoulder;
             BNO055IMU imu;
         
             // MOVEMENT METHODS (written by the team) 
@@ -92,13 +95,16 @@ public class App {
         @Override
             // The run method of the FTC Java file.
             public void runOpMode() {
-              motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
-              motorRight = hardwareMap.get(DcMotor.class, "motorRight");
-              frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
-              frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-              color1 = hardwareMap.get(ColorSensor.class, "color1"); // Sensors. We don't understand these yet from our practice with FTC SIM.
-              distance1 = hardwareMap.get(DistanceSensor.class, "distance1"); 
-              imu = hardwareMap.get(BNO055IMU.class, "imu");
+              leftWheel = hardwareMap.get(CRServo.class, "leftWheel");
+              rightWheel = hardwareMap.get(CRServo.class, "rightWheel");
+              backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftDrive");
+              backRightDrive = hardwareMap.get(DcMotor.class, "backRightDrive");
+              frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");
+              frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
+              wrist = hardwareMap.get(DcMotor.class, "wrist");
+              leftShoulder = hardwareMap.get(DcMotor.class, "leftShoulder");
+              rightShoulder = hardwareMap.get(DcMotor.class, "rightShoulder");
+              imu = hardwareMap.get(BNO055IMU.class, "imu"); // Sensors. WE don't understand how these work yet.
               
               // Movement method calls for testing. You can ignore these, but this is how they'd be called.
               moveForward(1200);
