@@ -5,12 +5,12 @@ This repository is going to be used for storing and editing the methods (same th
 ## The `src` Folder
 The src folder has been broken down to represent the 3 focuses of the programming team: Autonomous control, computer vision (through april tags), and teleOp control.
 
-Check src > Autonomous Control > current_methods_ftcsim.java to see the methods that will be used on the robot during the autonomous period
+Check `src` > `Autonomous Control` > `current_methods_ftcsim.java` to see the methods that will be used on the robot during the autonomous period
 original_practice_methods_ftcsim.java are the original functions that were created but no longer used on the robot. This file is for debugging and comparison primarily.
 
-Computer vision and april tag code can be found in the "Vision with April Tags" folder. Similarly, an "original" file has been created for debugging.
+Computer vision and april tag code can be found in the `Vision with April Tags` folder. Similarly, an "original" file has been created for debugging.
 
-TeleOp code can be found in the "TeleOp Control" file. 
+TeleOp code can be found in the `TeleOp Control` file. 
 
 > Last updated 10/14/23
 
