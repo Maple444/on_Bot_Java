@@ -5,7 +5,7 @@ public class App {
 
         /* Everything here is from our practice in FTC SIM *courses*. These are not our current functions 
          The purpose of this file is for us to have something to go back to and identify root problems in code 
-         or restart from scratch in creating a certain method */
+         or restart from scratch in creating a certain method. */
 
 
         // Method where everything runs in FTC SIM. Included. We don't fully understand how this works yet.
@@ -82,8 +82,7 @@ public class App {
               turnRight();
               turnRight();
               moveForward();
-            }
-            
+            }  
         }
     }
 }

@@ -10,12 +10,19 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
+
+/* This file stores code for computer vision and april tag functionality. Currently, it generates telemetry data using the Logitech 
+ * C270 HD camera and april tag processing. Be sure to use with official 2023-2024 FTC CENTERSTAGE april tags for correct functionality.
+ * Link to CENTERSTAGE april tags PDF: https://firstinspiresst01.blob.core.windows.net/first-in-show-ftc/apriltag-us-letter.pdf */
+
+
 @TeleOp
 public class Vision extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
 
+        // April tag processing
         AprilTagProcessor tagProcessor = new AprilTagProcessor.Builder()
                 // Sets up the april tag functionality for the driver hub FTC software
                 .setDrawAxes(true)

@@ -3,9 +3,9 @@ public class App {
         System.out.println("Hello, World!");
         
 
-        /* Everything here is from our practice in the FTC SIM *COMPETITION FIELD* simulation. These are our CURRENT 
-         * functions. The purpose of this file is for us to have an up to date reference for all methods we are using on
-         * FTC SIM. */
+        /* Everything here is from the code used DIRECTLY ON THE ROBOT. The purpose of this file is for us to have 
+         * an up to date reference for all methods we are using on the robot. This file is forked from the 
+         * current_methods_ftcsim.java file, but has additions and changes for use with the actual robot. */
 
 
         // Method where everything runs in FTC SIM. Included. We don't fully understand how this works yet.
@@ -21,7 +21,7 @@ public class App {
             DcMotor rightShoulder;
             BNO055IMU imu;
         
-
+            
             // MOVEMENT METHODS (written by the team) 
 
               /* This moveForward function works for 4 wheel drive robots, which is ours. The original moveForward() only
@@ -93,6 +93,23 @@ public class App {
               backRightDrive.setPower(0);
             }
 
+            // Strafing methods (10/19/23). 
+            /* These help the robot move side to side using the mechanum wheels. They are currently set as private methods, 
+             * as this is how they were originally. This could be changed in the future. */
+            private void StrafeLeft() {
+              BackLeft.setPower(1);
+              TopLeft.setPower(-1);
+              BackRight.setPower(-1);
+              TopRight.setPower(1);
+            }
+
+            private void StrafeRight() {
+              BackLeft.setPower(-1);
+              TopLeft.setPower(1);
+              BackRight.setPower(1);
+              TopRight.setPower(-1);
+            }
+
 
         @Override
             // The run method of the FTC Java file.
@@ -106,7 +123,7 @@ public class App {
               wrist = hardwareMap.get(DcMotor.class, "wrist");
               leftShoulder = hardwareMap.get(DcMotor.class, "leftShoulder");
               rightShoulder = hardwareMap.get(DcMotor.class, "rightShoulder");
-              imu = hardwareMap.get(BNO055IMU.class, "imu"); // Sensors. WE don't understand how these work yet.
+              imu = hardwareMap.get(BNO055IMU.class, "imu"); // Sensors. We don't understand how these work yet.
               
               // Movement method calls for testing. You can ignore these, but this is how they'd be called.
               moveForward(1200);
