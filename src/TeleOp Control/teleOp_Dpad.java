@@ -4,136 +4,171 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "TeleOP3 (Blocks to Java)")
-public class TankTestTeleOp extends LinearOpMode {
+// The file is currently called mainthingy.java on the robot's storage...?
+@TeleOp(name = "MainThingy (Blocks to Java)")
+public class MainThingy extends LinearOpMode {
 
-    private DcMotor BackRight;
-    private DcMotor BackLeft;
-    private DcMotor TopLeft;
+    private DcMotor Lift;
     private DcMotor TopRight;
+    private DcMotor BackRight;
+    private DcMotor TopLeft;
+    private DcMotor BackLeft;
     private DcMotor Intake;
 
-    /**
-     * This function is executed when this OpMode is selected from the Driver Station.
-     */
-    
-    @Override
-    public void runOpMode() {
-        BackRight = hardwareMap.get(DcMotor.class, "BackRight");
-        BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
-        TopLeft = hardwareMap.get(DcMotor.class, "TopLeft");
-        TopRight = hardwareMap.get(DcMotor.class, "TopRight");
-        Intake = hardwareMap.get(DcMotor.class, "Intake");
-        TopLeft.setDirection(DcMotor.Direction.REVERSE);
-        // Put initialization blocks here.
-        waitForStart();
-        if (opModeIsActive()) {
-            // Put run blocks here.
-            while (opModeIsActive()) {
-                // Put loop blocks here.
-                TopRight.setPower(gamepad1.right_stick_y);
-                BackRight.setPower(gamepad1.right_stick_y);
-                TopLeft.setPower(gamepad1.left_stick_y);
-                BackLeft.setPower(gamepad1.left_stick_y);
-                StrafeLeft();
-                StrafeRight();
-                MoveForwardDPad();
-                TurnLeftDPad();
-                TurnRightDPad();
-                TurnBackwardsDPad();
-                IntakeIn();
-                IntakeOut();
-                IntakeIn2();
-                IntakeOut2();
-                telemetry.update();
-            }
+    private void IntakeOut() {
+        if (gamepad2.b) {
+            Intake.setPower(1);
+        } else {
+            Intake.setPower(0);
+        }
+    }
+
+    private void IntakeIn() {
+        if (gamepad2.x) {
+            Intake.setPower(-1);
+        } else {
+            Intake.setPower(0);
+        }
+    }
+
+    private void DPadUp() {
+        if (gamepad1.dpad_up) {
+            TopLeft.setPower(1);
+            TopRight.setPower(1);
+            BackLeft.setPower(1);
+            BackRight.setPower(1);
+        }
+    }
+
+    private void DPadBackwards() {
+        if (gamepad1.dpad_down) {
+            TopLeft.setPower(-1);
+            TopRight.setPower(-1);
+            BackLeft.setPower(-1);
+            BackRight.setPower(-1);
+        }
+    }
+
+    private void DPadRight() {
+        if (gamepad1.dpad_right) {
+            TopLeft.setPower(-1);
+            TopRight.setPower(1);
+            BackLeft.setPower(-1);
+            BackRight.setPower(1);
+        }
+    }
+
+    private void DPadLeft() {
+        if (gamepad1.dpad_left) {
+            TopLeft.setPower(1);
+            TopRight.setPower(-1);
+            BackLeft.setPower(1);
+            BackRight.setPower(-1);
         }
     }
 
     private void StrafeLeft() {
         if (gamepad1.x) {
-            BackLeft.setPower(1);
             TopLeft.setPower(-1);
-            BackRight.setPower(-1);
             TopRight.setPower(1);
+            BackLeft.setPower(1);
+            BackRight.setPower(-1);
         }
     }
 
     private void StrafeRight() {
-
         if (gamepad1.b) {
-            BackLeft.setPower(-1);
             TopLeft.setPower(1);
-            BackRight.setPower(1);
             TopRight.setPower(-1);
+            BackLeft.setPower(-1);
+            BackRight.setPower(1);
         }
     }
 
-    private void MoveForwardDPad() {
-        if (gamepad1.dpad_up) {
-            BackLeft.setPower(1);
-            TopLeft.setPower(1);
-            BackRight.setPower(1);
+    private void Diag1() {
+        if (gamepad1.left_bumper) {
             TopRight.setPower(1);
-        }
-    }
-
-    private void TurnLeftDPad() {
-        if (gamepad1.dpad_left) {
             BackLeft.setPower(1);
+        }
+    }
+
+    private void Diag2() {
+        if (gamepad1.right_bumper) {
             TopLeft.setPower(1);
-            BackRight.setPower(-1);
-            TopRight.setPower(-1);
-        }
-    }
-
-    private void TurnRightDPad() {
-        if (gamepad1.dpad_right) {
-            BackLeft.setPower(-1);
-            TopLeft.setPower(-1);
             BackRight.setPower(1);
-            TopRight.setPower(1);
         }
     }
 
-    private void TurnBackwardsDPad() {
-        if (gamepad1.dpad_left) {
-            BackLeft.setPower(-1);
-            TopLeft.setPower(-1);
-            BackRight.setPower(-1);
-            TopRight.setPower(-1);
-        }
-    }
-
-    private void IntakeIn() {
+    private void Diag3() {
         if (gamepad1.y) {
-            Intake.setPower(-1);
-        } else {
-            Intake.setPower(0);
+            TopLeft.setPower(-1);
+            BackRight.setPower(-1);
         }
     }
 
-    private void IntakeOut() {
+    private void Diag4() {
         if (gamepad1.a) {
-            Intake.setPower(0.5);
-        } else {
-            Intake.setPower(0);
+            TopRight.setPower(-1);
+            BackLeft.setPower(-1);
         }
     }
 
-    private void IntakeOut2() {
-        if (gamepad2.a) {
-            Intake.setPower(0.5);
-        } else {
-            Intake.setPower(0);
-        }
-    }
-
-    private void IntakeIn2() {
+    private void LiftUp() {
         if (gamepad2.y) {
-            Intake.setPower(-1);
-        } else {
-            Intake.setPower(0);
+            Lift.setPower(1);
+        }
+    }
+
+    private void LiftDown() {
+        if (gamepad2.a) {
+            Lift.setPower(-1);
+        }
+    }
+
+    /**
+     * This function is executed when this OpMode is selected from the Driver Station.
+     */
+    @Override
+    public void runOpMode() {
+        Lift = hardwareMap.get(DcMotor.class, "Lift");
+        TopRight = hardwareMap.get(DcMotor.class, "TopRight");
+        BackRight = hardwareMap.get(DcMotor.class, "BackRight");
+        TopLeft = hardwareMap.get(DcMotor.class, "TopLeft");
+        BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+        Intake = hardwareMap.get(DcMotor.class, "Intake");
+
+        // Put initialization blocks here.
+        waitForStart();
+        TopRight.setDirection(DcMotor.Direction.REVERSE);
+        BackRight.setDirection(DcMotor.Direction.REVERSE);
+        BackLeft.setDirection(DcMotor.Direction.REVERSE);
+
+        if (opModeIsActive()) {
+            // Put run blocks here.
+            while (opModeIsActive()) {
+                // Put loop blocks here
+                LiftUp();
+                LiftDown();
+                IntakeIn();
+                IntakeOut();
+                DPadLeft();
+                DPadRight();
+                DPadUp();
+                DPadBackwards();
+                StrafeLeft();
+                StrafeRight();
+                Diag1();
+                Diag2();
+                Diag3();
+                Diag4();
+                TopRight.setPower(-gamepad1.right_stick_y);
+                BackRight.setPower(-gamepad1.right_stick_y);
+                TopLeft.setPower(-gamepad1.left_stick_y);
+                BackLeft.setPower(-gamepad1.left_stick_y);
+                telemetry.update();
+                // Put loop blocks here.
+                telemetry.update();
+            }
         }
     }
 }
