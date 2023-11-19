@@ -1,4 +1,145 @@
-public class App {
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Blinker;
+import com.qualcomm.robotcore.hardware.Gyroscope;
+
+@Autonomous(name="shakursautonomous")
+public class AutonomousAttempt extends LinearOpMode {
+
+    private DcMotor backLeft;
+    private DcMotor backRight;
+    private Blinker control_Hub;
+    private Blinker expansion_Hub_6;
+    private DcMotor intake;
+    private DcMotor lift;
+    private DcMotor topLeft;
+    private DcMotor topRight;
+    private Gyroscope imu;
+
+    // Stops all movement for movement methods that are below it.
+    private void end() {
+        topLeft.setPower(0);
+        topRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
+
+    // Note: The time parameter defines how long the method will run.
+    private void intakeOut(int time) {
+        intake.setPower(1);
+        sleep(time);
+        end();
+    }
+
+    private void intakeIn(int time) {
+        intake.setPower(-1);
+        sleep(time);
+        end();
+    } 
+
+    private void moveForward(int time) {
+        topLeft.setPower(0.5);
+        topRight.setPower(0.5);
+        backLeft.setPower(0.5);
+        backRight.setPower(0.5);
+        
+        sleep(time);
+        end();
+    }
+
+    private void moveBackwards(int time) {
+        topLeft.setPower(-1);
+        topRight.setPower(-1);
+        backLeft.setPower(-1);
+        backRight.setPower(-1);
+        
+        sleep(time);
+        end();
+    }
+
+    private void turnRight(int time) {
+        topLeft.setPower(-1);
+        topRight.setPower(1);
+        backLeft.setPower(-1);
+        backRight.setPower(1);
+        
+        sleep(time);
+        end();
+    } 
+
+    private void turnLeft(int time) {
+        topLeft.setPower(1);
+        topRight.setPower(-1);
+        backLeft.setPower(1);
+        backRight.setPower(-1);
+
+        sleep(time);
+        end();
+    } 
+
+    private void strafeLeft(int time) {
+        topLeft.setPower(-1);
+        topRight.setPower(1);
+        backLeft.setPower(1);
+        backRight.setPower(-1);
+
+        sleep(time);
+        end();
+    }
+
+    private void strafeRight(int time){
+        topLeft.setPower(1);
+        topRight.setPower(-1);
+        backLeft.setPower(-1);
+        backRight.setPower(1);
+
+        sleep(time);
+        end();
+    }
+
+    private void liftUp(int time){
+        lift.setPower(0.5);
+        sleep(time);
+        end();
+    }
+
+    private void liftDown(int time){
+        lift.setPower(-0.5);
+        sleep(time);
+        end();
+    }
+  
+    @Override
+    // Run method
+    public void runOpMode() {
+        lift = hardwareMap.get(DcMotor.class, "Lift");
+        topRight = hardwareMap.get(DcMotor.class, "TopRight");
+        backRight = hardwareMap.get(DcMotor.class, "BackRight");
+        topLeft = hardwareMap.get(DcMotor.class, "TopLeft");
+        backLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+        intake = hardwareMap.get(DcMotor.class, "Intake");
+
+        // Put initialization blocks here.
+        waitForStart();
+        topRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+
+        if (opModeIsActive()) {
+            // Put run blocks here.
+            moveForward(1000);
+            turnLeft(940);
+            turnRight(940);
+            moveForward(1000);
+            turnRight(940);
+            intakeIn(500);
+            intakeOut(500);
+        }
+    }
+} 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         
