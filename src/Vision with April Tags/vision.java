@@ -15,6 +15,8 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
  * C270 HD camera and april tag processing. Be sure to use with official 2023-2024 FTC CENTERSTAGE april tags for correct functionality.
  * Link to CENTERSTAGE april tags PDF: https://firstinspiresst01.blob.core.windows.net/first-in-show-ftc/apriltag-us-letter.pdf */
 
+ /* Make sure you have FTC robot controller and its files  open in Android Studio. This code was written in VScode and transferred
+  * to Android Studio.=*/
 
 @TeleOp
 public class Vision extends LinearOpMode {
@@ -37,8 +39,11 @@ public class Vision extends LinearOpMode {
                 .setCameraResolution(new Size(640, 480))
                 .build();
 
+
         waitForStart();
 
+
+        // Running opMode
         while (!isStopRequested() && opModeIsActive()) {
 
             if (tagProcessor.getDetections().size() > 0) {
