@@ -257,7 +257,7 @@ private DcMotor Intake;
             telemetry.addData("Lift 1 Power", Lift1Power);
             telemetry.addData("Lift 2 Power", Lift2Power);
             telemetry.addData("Intake Power(PROBABLY 0 LOL)", IntakePower);
-
+4
 
         }
     }
