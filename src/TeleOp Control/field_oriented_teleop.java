@@ -13,6 +13,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+// An experimental teleop file that is field oriented rather than robot oriented.
+// Uses the embedded gyroscope.
+
 @TeleOp
 public class FieldOrientedDriving extends LinearOpMode {
     private DcMotor FrontLeft;
