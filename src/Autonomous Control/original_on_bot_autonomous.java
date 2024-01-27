@@ -6,29 +6,32 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Blinker;
 import com.qualcomm.robotcore.hardware.Gyroscope;
 
-@Autonomous(name="autonomous")
-public class AutonomousAttempt extends LinearOpMode {
+// Formerly known as on_bot_autonomous.java. Replaced by red and blue side autonomous files.
 
-    private DcMotor backLeft;
-    private DcMotor backRight;
+@Autonomous(name="b_autonomous1")
+public class b_autonomous1 extends LinearOpMode {
+
+    private DcMotor BackLeft;
+    private DcMotor BackRight;
     private Blinker control_Hub;
     private Blinker expansion_Hub_6;
     private DcMotor intake;
     private DcMotor lift;
-    private DcMotor topLeft;
-    private DcMotor topRight;
+    private DcMotor FrontLeft;
+    private DcMotor FrontRight;
     private Gyroscope imu;
 
     // Stops all movement for movement methods that are below it.
     private void end() {
-        topLeft.setPower(0);
-        topRight.setPower(0);
-        backLeft.setPower(0);
-        backRight.setPower(0);
+        FrontLeft.setPower(0);
+        FrontRight.setPower(0);
+        BackLeft.setPower(0);
+        BackRight.setPower(0);
     }
 
+
     // Note: The time parameter defines how long the method will run.
-    
+
     // Intake methods (complete)
     private void intakeOut(int time) {
         intake.setPower(1);
@@ -40,72 +43,72 @@ public class AutonomousAttempt extends LinearOpMode {
         intake.setPower(-1);
         sleep(time);
         end();
-    } 
+    }
 
-    // Straight line movement (complete)
+    // Straight line movement (Complete)
     private void moveForward(int time) {
-        topLeft.setPower(0.5);
-        topRight.setPower(0.5);
-        backLeft.setPower(0.5);
-        backRight.setPower(0.5);
-        
+        FrontLeft.setPower(1);
+        FrontRight.setPower(1);
+        BackLeft.setPower(1);
+        BackRight.setPower(1);
+
         sleep(time);
         end();
     }
 
     private void moveBackwards(int time) {
-        topLeft.setPower(-0.5);
-        topRight.setPower(-0.5);
-        backLeft.setPower(-0.5);
-        backRight.setPower(-0.5);
-        
+        FrontLeft.setPower(-1);
+        FrontRight.setPower(-1);
+        BackLeft.setPower(-1);
+        BackRight.setPower(-1);
+
         sleep(time);
         end();
     }
 
-    // Turning (needs work)
+    // Turning (Complete)
     private void turnRight(int time) {
-        topLeft.setPower(-0.5);
-        topRight.setPower(0.5);
-        backLeft.setPower(-0.5);
-        backRight.setPower(0.5);
-        
+        FrontLeft.setPower(1);
+        FrontRight.setPower(-1);
+        BackLeft.setPower(1);
+        BackRight.setPower(-1);
+
         sleep(time);
         end();
-    } 
+    }
 
     private void turnLeft(int time) {
-        topLeft.setPower(0.5);
-        topRight.setPower(-0.5);
-        backLeft.setPower(0.5);
-        backRight.setPower(-0.5);
+        FrontLeft.setPower(-1);
+        FrontRight.setPower(1);
+        BackLeft.setPower(-1);
+        BackRight.setPower(1);
 
         sleep(time);
         end();
-    } 
+    }
 
     // Strafing (needs work)
     private void strafeLeft(int time) {
-        topLeft.setPower(-0.5);
-        topRight.setPower(0.5);
-        backLeft.setPower(0.5);
-        backRight.setPower(-0.5);
+        FrontLeft.setPower(-1);
+        FrontRight.setPower(1);
+        BackLeft.setPower(1);
+        BackRight.setPower(-1);
 
         sleep(time);
         end();
     }
 
     private void strafeRight(int time){
-        topLeft.setPower(0.5);
-        topRight.setPower(-0.5);
-        backLeft.setPower(-0.5);
-        backRight.setPower(0.5);
+        FrontLeft.setPower(1);
+        FrontRight.setPower(-1);
+        BackLeft.setPower(-1);
+        BackRight.setPower(1);
 
         sleep(time);
         end();
     }
 
-    // Lift (not used on robot currently)
+    // Lift & servos (not used on robot currently)
     private void liftUp(int time){
         lift.setPower(0.5);
         sleep(time);
@@ -117,52 +120,64 @@ public class AutonomousAttempt extends LinearOpMode {
         sleep(time);
         end();
     }
-  
+
+    // Servo code not implemented yet.
+
 
     @Override
     // Run method
     public void runOpMode() {
         lift = hardwareMap.get(DcMotor.class, "Lift");
-        topRight = hardwareMap.get(DcMotor.class, "TopRight");
-        backRight = hardwareMap.get(DcMotor.class, "BackRight");
-        topLeft = hardwareMap.get(DcMotor.class, "TopLeft");
-        backLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+        FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+        BackRight = hardwareMap.get(DcMotor.class, "BackRight");
+        FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
+        BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
         intake = hardwareMap.get(DcMotor.class, "Intake");
 
         // Put initialization blocks here.
         waitForStart();
-        topRight.setDirection(DcMotor.Direction.REVERSE);
-        backRight.setDirection(DcMotor.Direction.REVERSE);
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        FrontRight.setDirection(DcMotor.Direction.REVERSE);
+        BackRight.setDirection(DcMotor.Direction.REVERSE);
+        // BackLeft.setDirection(DcMotor.Direction.REVERSE);
+
 
         if (opModeIsActive()) {
             // Put run blocks here.
-            /* Below code is just testing. 4 second starting delay, 
+            /* Below code is just testing. 4 second starting delay,
              * 2 second delay between movements. */
-            sleep(4000);
-            moveForward(1000);
-            
+            sleep(1000);
+            moveForward(1900);
+
+            sleep(2000);
+            turnRight(300);
+
+            sleep(2000);
+            moveForward(6000);
+
+            /* Old movement test
             sleep(2000);
             turnLeft(940);
-            
+
             sleep(2000);
             turnRight(940);
-            
+
             sleep(2000);
             moveForward(1000);
-            
+
             sleep(2000);
             turnRight(940);
 
             sleep(2000);
             strafeLeft(1000);
-            
+
             sleep(2000);
             strafeRight(1000);
-            
+
+            liftUp(2000);
+            liftDown(2000);
             /* sleep(2000);
             intakeIn(500);
-            
+
             sleep(2000);
             intakeOut(500); */
         }
