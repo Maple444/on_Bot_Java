@@ -158,7 +158,7 @@ private DcMotor Intake;
 
 
     public void runOpMode()  {
-
+        // Field oriented code. We don't understand how this works yet.
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -184,7 +184,6 @@ private DcMotor Intake;
         Intake = hardwareMap.get(DcMotor.class, "Intake");
         FrontRight.setDirection(DcMotor.Direction.REVERSE);
         BackRight.setDirection(DcMotor.Direction.REVERSE);
-
 
 
         waitForStart();
@@ -260,8 +259,6 @@ private DcMotor Intake;
             telemetry.addData("Lift 1 Power", Lift1Power);
             telemetry.addData("Lift 2 Power", Lift2Power);
             telemetry.addData("Intake Power(PROBABLY 0 LOL)", IntakePower);
-4
-
         }
     }
 }
