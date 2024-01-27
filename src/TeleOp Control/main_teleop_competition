@@ -29,10 +29,6 @@ public class MainThingy extends LinearOpMode {
         }
     }
 
-
-
-
-
     private void IntakeIn() {
         if (gamepad2.x) {
             Intake.setPower(-1);
@@ -219,8 +215,7 @@ private void IntakeDown() {
                     telemetry.addData("Lift 1 Power", Lift1Power);
                     telemetry.addData("Lift 2 Power", Lift2Power);
                     telemetry.addData("Intake Power(PROBABLY 0 LOL)", IntakePower);
-telemetry.addData("IntakeSPosition", IntakePosition);
-
+                    telemetry.addData("IntakeSPosition", IntakePosition);
                 }
             }
         }
