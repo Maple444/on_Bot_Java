@@ -136,11 +136,11 @@ public class NewAutoBlueSide extends LinearOpMode {
             /* Below code is just testing. 4 second starting delay,
              * 2 second delay between movements. */
             sleep(1000);
-            strafeLeft(1000);
+            strafeLeft(1370);
             sleep(1000);
-            moveBackwards(2000);
+            moveBackwards(1300);
             sleep(1000);
-            strafeLeft(500);
+            strafeRight(500);
             end();
 
         }
